@@ -52,6 +52,9 @@ if ($response !== false) {
     // Vytvoření tabulky
     if ($conn->query($sql) === TRUE) {
         // Vložení/importování platby do tabulky
+        $startTime = microtime(true); // Začátek importu
+        $importedCount = 0;
+
         foreach ($data['accountStatement']['transactionList']['transaction'] as $transaction) {
             $transactionId = $transaction['column22']['value'];
             $datum = date("Y-m-d", strtotime($transaction['column0']['value']));
@@ -64,20 +67,32 @@ if ($response !== false) {
             $provedl = isset($transaction['column8']) ? $transaction['column8']['value'] : '';
             $idPokynu = intval($row['column17']['value']);
 
-			
-			$varSymbol = isset($transaction['column4']) ? $transaction['column4']['value'] : ''; // Získanie hodnoty konštantného symbolu (KS)
+            $varSymbol = isset($transaction['column4']) ? $transaction['column4']['value'] : ''; // Získanie hodnoty konštantného symbolu (KS)
 
             $insertSql = "INSERT INTO platbyTest (transactionId, datum, objem, mena, protiucet, kodBanky, nazevBanky, typ, provedl, idPokynu, varSymbol)
                           VALUES ('$transactionId', '$datum', '$objem', '$mena', '$protiucet', '$kodBanky', '$nazevBanky', '$typ', '$provedl', '$idPokynu', '$varSymbol')";
 
-if ($conn->query($insertSql) === FALSE) {
-    echo '<div class="alert alert-warning">Chyba při importování platby: ' . $conn->error . '</div>';
-    exit;
-}
-
+            if ($conn->query($insertSql) === TRUE) {
+                $importedCount++;
+            } else {
+                echo '<div class="alert alert-warning">Chyba při importování platby: ' . $conn->error . '</div>';
+                exit;
+            }
         }
 
-        echo '<div class="alert alert-primary" role="alert">Platby byly úspěšně importovány.</div>';
+        $endTime = microtime(true); // Konec importu
+        $importDuration = $endTime - $startTime;
+
+        echo '<div class="alert alert-primary" role="alert">Platby byly úspěšně importovány. Počet importovaných plateb: ' . $importedCount . '</div>';
+        echo '<div class="alert alert-info" role="alert">Čas trvání importu: ' . round($importDuration, 2) . ' sekund</div>';
+
+        // Save debug info to a file
+        $debugInfo = "Import start time: " . date("Y-m-d H:i:s", $startTime) . "\n";
+        $debugInfo .= "Import end time: " . date("Y-m-d H:i:s", $endTime) . "\n";
+        $debugInfo .= "Import duration: " . round($importDuration, 2) . " seconds\n";
+        $debugInfo .= "Number of imported payments: " . $importedCount . "\n";
+
+        file_put_contents('debug.log', $debugInfo, FILE_APPEND | LOCK_EX); // Create or append to the debug.log file
     } else {
         echo '<div class="alert alert-danger">Chyba při importování platby: ' . $conn->error . '</div>';
     }
