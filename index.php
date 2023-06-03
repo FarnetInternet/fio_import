@@ -36,8 +36,9 @@
 					<div class="mb-3"></div>
                     <div class="form-group">
                         <label for="dateToInput">Datum do:</label>
-                        <input type="date" class="form-control" id="dateToInput" name="dateTo">
+                        <input type="text" class="form-control" id="dateToInput" name="dateTo" value="<?php echo date('d.m.Y'); ?>">
                     </div>
+
 					<div class="mb-3"></div>
                 </form>
             </div>
