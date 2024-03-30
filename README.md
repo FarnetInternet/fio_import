@@ -1,34 +1,106 @@
- Automatic Payment Import
-This is a web application for automatically importing payments. It allows you to connect to the FIO API and retrieve payment data within a specified date range. The retrieved data can then be imported into a database for further analysis and processing.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Payment Import App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
 
-Prerequisites
-Before using this application, make sure you have the following:
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-FIO API token: You need a valid FIO API token to connect to the FIO API and retrieve payment data.
-Database connection details: You should have the IP address or server name, username, password, and the name of the database where you want to import the payment data.
-Getting Started
-To use the application, follow these steps:
+        h1, h2, h3 {
+            color: #333;
+        }
 
-Open the application in a web browser.
-Fill in the following details in the FIO API Connection section:
-FIO API token: Enter your FIO API token in the provided input field.
-From: Select the starting date from which you want to import payments.
-To: Select the end date until which you want to import payments.
-Fill in the following details in the Database Connection section:
-Server: Enter the IP address or server name where your database is hosted.
-Username: Provide the username for accessing the database.
-Password: Enter the password associated with the provided username.
-Database: Specify the name of the database where you want to import the payment data.
-Click the Submit button to initiate the payment import process.
-Wait for the import to complete. The status and any error messages will be displayed in the Result section.
-Dependencies
-This application relies on the following dependencies:
+        p {
+            margin-bottom: 10px;
+        }
 
-Bootstrap CSS: Used for styling the user interface.
-Bootstrap and jQuery: Required for Bootstrap components and AJAX functionality.
-Please make sure you have an active internet connection to load these dependencies.
+        ul {
+            margin: 0;
+            padding: 0;
+        }
 
-Notes
-The import process is handled by the import.php file on the server. Make sure it is properly configured and accessible.
-Any errors encountered during the import process will be logged in the browser console for troubleshooting purposes.
-For more information or assistance, please refer to the application documentation or contact the support team.
+        li {
+            list-style: none;
+            margin-bottom: 5px;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: #856404;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Automatic Payment Import App</h1>
+        <p>This application is designed to automate the process of importing payments from Fio bank using their API into a local database.</p>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>PHP (>= 7.0)</li>
+            <li>cURL PHP extension</li>
+            <li>MySQL or MariaDB</li>
+            <li>Bootstrap (v5.2.3)</li>
+            <li>Font Awesome (v5.15.4)</li>
+        </ul>
+
+        <h2>Installation</h2>
+        <ol>
+            <li>Clone the repository: <code>git clone https://github.com/yourusername/your-repo.git</code></li>
+            <li>Configure your web server (Apache, Nginx, etc.) to serve the application from the cloned directory.</li>
+            <li>Import the SQL file <code>database.sql</code> into your MySQL or MariaDB database.</li>
+            <li>Edit <code>import.php</code> and set up your Fio API token and database connection details.</li>
+        </ol>
+
+        <h2>Usage</h2>
+        <p>Once the application is set up, you can access it through your web browser. Fill in the required fields in the form and click the "Odeslat" (Submit) button to initiate the import process.</p>
+
+        <h2>License</h2>
+        <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+
+        <h2>Contributing</h2>
+        <p>Contributions are welcome! Feel free to submit pull requests or open issues.</p>
+
+        <div class="alert alert-info">
+            <strong>Note:</strong> Make sure to keep your Fio API token and database credentials secure and do not expose them publicly.
+        </div>
+    </div>
+</body>
+</html>
