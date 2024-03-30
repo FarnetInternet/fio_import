@@ -1,106 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatic Payment Import App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
+<h1 align="center">Automatic Payment Import App</h1>
+<p align="center"><i>A PHP application to automate the process of importing payments from Fio bank into a local database.</i></p>
+<div align="center">
+  <a href="#"><img src="https://img.shields.io/badge/PHP-%3E%3D7.0-blue" alt="PHP Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/cURL-Enabled-brightgreen" alt="cURL Enabled"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/MySQL-Compatible-blueviolet" alt="MySQL Compatible"/></a>
+  <a href="#"><img src="https://img.shields.io/github/license/yourusername/your-repo?color=blue" alt="License"/></a>
+</div>
+<br>
+<p align="center"><i>Like this project? Please consider giving it a star!</i></p>
+<br>
+<p>This application is designed to automate the process of importing payments from Fio bank using their API into a local database.</p>
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+## Requirements
 
-        h1, h2, h3 {
-            color: #333;
-        }
+- PHP (>= 7.0)
+- cURL PHP extension
+- MySQL or MariaDB
+- Bootstrap (v5.2.3)
+- Font Awesome (v5.15.4)
 
-        p {
-            margin-bottom: 10px;
-        }
+## Installation
 
-        ul {
-            margin: 0;
-            padding: 0;
-        }
+1. Clone the repository: `git clone https://github.com/yourusername/your-repo.git`
+2. Configure your web server (Apache, Nginx, etc.) to serve the application from the cloned directory.
+3. Import the SQL file `database.sql` into your MySQL or MariaDB database.
+4. Edit `import.php` and set up your Fio API token and database connection details.
 
-        li {
-            list-style: none;
-            margin-bottom: 5px;
-        }
+## Usage
 
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
+Once the application is set up, you can access it through your web browser. Fill in the required fields in the form and click the "Odeslat" (Submit) button to initiate the import process.
 
-        .alert-info {
-            background-color: #d1ecf1;
-            border-color: #bee5eb;
-            color: #0c5460;
-        }
+## License
 
-        .alert-warning {
-            background-color: #fff3cd;
-            border-color: #ffeeba;
-            color: #856404;
-        }
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-        .alert-danger {
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-            color: #721c24;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Automatic Payment Import App</h1>
-        <p>This application is designed to automate the process of importing payments from Fio bank using their API into a local database.</p>
+## Contributing
 
-        <h2>Requirements</h2>
-        <ul>
-            <li>PHP (>= 7.0)</li>
-            <li>cURL PHP extension</li>
-            <li>MySQL or MariaDB</li>
-            <li>Bootstrap (v5.2.3)</li>
-            <li>Font Awesome (v5.15.4)</li>
-        </ul>
+Contributions are welcome! Feel free to submit pull requests or open issues.
 
-        <h2>Installation</h2>
-        <ol>
-            <li>Clone the repository: <code>git clone https://github.com/yourusername/your-repo.git</code></li>
-            <li>Configure your web server (Apache, Nginx, etc.) to serve the application from the cloned directory.</li>
-            <li>Import the SQL file <code>database.sql</code> into your MySQL or MariaDB database.</li>
-            <li>Edit <code>import.php</code> and set up your Fio API token and database connection details.</li>
-        </ol>
-
-        <h2>Usage</h2>
-        <p>Once the application is set up, you can access it through your web browser. Fill in the required fields in the form and click the "Odeslat" (Submit) button to initiate the import process.</p>
-
-        <h2>License</h2>
-        <p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
-
-        <h2>Contributing</h2>
-        <p>Contributions are welcome! Feel free to submit pull requests or open issues.</p>
-
-        <div class="alert alert-info">
-            <strong>Note:</strong> Make sure to keep your Fio API token and database credentials secure and do not expose them publicly.
-        </div>
-    </div>
-</body>
-</html>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/elangosundar/awesome-README-templates/master/awesome-github-profile.png" alt="Awesome README Templates" />
+</div>
