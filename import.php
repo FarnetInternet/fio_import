@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/plain; charset=utf-8');
 require_once 'FioApi.php';
 
 // Function to create database and table
@@ -24,8 +25,8 @@ function createDatabaseAndTable($servername, $username, $password, $dbname) {
     $conn->select_db($dbname);
 
     // Create table
-    $sql = "CREATE TABLE IF NOT EXISTS transaction (
-      `transactionId` bigint NOT NULL,
+$sql = "CREATE TABLE IF NOT EXISTS transaction (
+      `transactionId` bigint NOT NULL PRIMARY KEY,
       `datum` date DEFAULT NULL,
       `objem` decimal(10,2) DEFAULT NULL,
       `mena` varchar(3) DEFAULT NULL,
@@ -39,6 +40,7 @@ function createDatabaseAndTable($servername, $username, $password, $dbname) {
       `variabilnySymbol` varchar(10) DEFAULT NULL,
       `specificSymbol` varchar(10) DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;";
+
 
     if ($conn->query($sql) === TRUE) {
         echo '<div class="alert alert-success" role="alert"><i class="fas fa-check-circle"></i> Tabulka byla úspěšně vytvořena nebo již existuje</div>';
@@ -126,10 +128,11 @@ if (!$err) {
                     $provedl = isset($transaction['column8']) ? $transaction['column8']['value'] : '';
                     $idPokynu = intval($transaction['column17']['value']);
 
-                    $variabilnySymbol = isset($transaction['column4']) ? $transaction['column4']['value'] : '';
+                    $variabilnySymbol = isset($transaction['column5']) ? $transaction['column5']['value'] : '';
+                    $konstantnySymbol = isset($transaction['column4']) ? $transaction['column4']['value'] : '';
 
-                    $insertSql = "INSERT INTO transaction (transactionId, datum, objem, mena, protiucet, kodBanky, nazevBanky, typ, provedl, idPokynu, variabilnySymbol)
-                                  VALUES ('$transactionId', '$datum', '$objem', '$mena', '$protiucet', '$kodBanky', '$nazevBanky', '$typ', '$provedl', '$idPokynu', '$variabilnySymbol')";
+                    $insertSql = "INSERT INTO transaction (transactionId, datum, objem, mena, protiucet, kodBanky, nazevBanky, typ, provedl, idPokynu, variabilnySymbol, konstantnySymbol)
+                                  VALUES ('$transactionId', '$datum', '$objem', '$mena', '$protiucet', '$kodBanky', '$nazevBanky', '$typ', '$provedl', '$idPokynu', '$variabilnySymbol', '$konstantnySymbol')";
 
                     if ($conn->query($insertSql) === true) {
                         $importedCount++;
